@@ -19,6 +19,20 @@ export function getServerSupabase(): SupabaseClient {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+  // TEMPORARY: prints to Vercel function logs so we can verify the env var is
+  // actually loading the service_role key (not the anon key or undefined).
+  // Decode the middle JWT chunk in the log to see "role":"service_role".
+  // Remove this block once verified.
+  console.log("[supabase-debug]", {
+    hasUrl: !!url,
+    urlPrefix: url?.slice(0, 40) ?? null,
+    hasKey: !!serviceKey,
+    keyLen: serviceKey?.length ?? 0,
+    keyMiddleSegment: serviceKey?.split(".")[1]
+      ? Buffer.from(serviceKey.split(".")[1], "base64").toString("utf8")
+      : null,
+  });
+
   if (!url || !serviceKey) {
     throw new Error(
       "Supabase env vars missing. Need NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
