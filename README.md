@@ -1,3 +1,5 @@
+# Future Planet Sales Intelligence: an internal web app that gives the Future Planet sales team a single sign-in place to run research workflows, such as sector intelligence briefings, and save the results. Built with Next.js, TypeScript and Supabase. Status: authentication, the dashboard and the first workflow (Sector Intelligence) are live; porting the remaining four workflows is paused, and this was progress was transferred to another member of the Future Planet team.
+
 # Future Planet
 
 Private sales intelligence platform for the Future Planet team. Built on Next.js, deployed to Vercel, gated by Clerk so only invited teammates can sign in.
